@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { getPokemons } from './services/API';
 import { PokemonsList } from './services/API/type';
 
 import Landing from './pages/Landing';
+import Details from './pages/Details';
 
 const PAGINATION_SIZE = 5;
 
@@ -31,8 +32,9 @@ function App() {
       <Route exact path="/">
         <Landing paginationInfo={paginationInfo} increment={increment} decrement={decrement} />
       </Route>
+
       <Route exact path="/pokemon">
-        <h1>HOLA!</h1>
+        <Details />
       </Route>
     </Router>
   );

@@ -36,7 +36,7 @@ interface VersionGroupDetails {
   version_group: NameAndUrl;
 };
 
-interface Move {
+export interface Move {
   move: NameAndUrl;
   version_group_details: VersionGroupDetails[];
 };
@@ -82,4 +82,18 @@ export interface PokemonInfo {
   stats: Stats[];
   types: Type[];
   weight: number,
-}
+};
+
+interface Effect {
+  effect: string;
+  language: NameAndUrl;
+  short_effect: string;
+};
+
+export interface MoveDetails {
+  effect_entries: Effect[];
+};
+
+export interface AbilityDetails {
+  effect_entries: Effect[];
+};

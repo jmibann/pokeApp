@@ -15,16 +15,20 @@ function App() {
   const [paginationInfo, setPaginationInfo] = useState<PokemonsList>();
 
   useEffect(() => {
-    const loadPage = async () => await getPokemons(PAGINATION_SIZE, offset).then(page => setPaginationInfo(page));
+    const loadPage = async () => await getPokemons(PAGINATION_SIZE, offset * PAGINATION_SIZE).then(page => setPaginationInfo(page));
 
     loadPage();
   }, [offset]);
 
 
-  const increment = () => setOffset(prev => prev + 1);
+  const increment = () => {
+    if (paginationInfo && (offset < (paginationInfo.count / PAGINATION_SIZE) - 1)) {
+      setOffset(prev => (prev + 1))
+    }
+  };
 
   const decrement = () => {
-    if (offset) setOffset(prev => prev - 1);
+    if (offset) setOffset(prev => (prev - 1));
   };
 
   return (

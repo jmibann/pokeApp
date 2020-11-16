@@ -90,10 +90,14 @@ interface Effect {
   short_effect: string;
 };
 
-export interface MoveDetails {
-  effect_entries: Effect[];
-};
-
-export interface AbilityDetails {
-  effect_entries: Effect[];
+export interface Details {
+  name:string;
+  names: {
+    name: string;
+    language: NameAndUrl;
+  }[];
+  flavor_text_entries:{
+    flavor_text: string; 
+    language: NameAndUrl;
+  }[];
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation, useHistory } from "react-router-dom";
 
 import Ability from '../../components/Ability';
@@ -18,12 +18,13 @@ const Details: React.FC<{}> = () => {
       <Button title="Go Back" handler={history.goBack} />
 
       <span className="text-3xl py-8 font-bold">{name}</span>
-      <div className="w-1/3" >
+
+      <div className="w-1/3">
         <img src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`} alt={name} />
       </div>
 
       <div className="flex flex-col w-4/5">
-        <div className="flex flex-row w-full justify-center" >
+        <div className="flex flex-row w-full justify-center mt-6" >
           <span className="text-xl font-bold uppercase"> Abilities:</span>
         </div>
 

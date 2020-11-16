@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import ItemSpecs from '../ItemSpecs';
+
 import { getMove } from '../../services/API';
-import { MoveDetails } from '../../services/API/type';
+import { Details } from '../../services/API/type';
 
 type MoveProps = {
   name: string;
@@ -9,7 +11,7 @@ type MoveProps = {
 };
 
 const Move: React.FC<MoveProps> = ({ name, url }) => {
-  const [move, setMove] = useState<MoveDetails>();
+  const [move, setMove] = useState<Details>();
 
   useEffect(() => {
     const fetchMoves = async () => await getMove(name).then(move => setMove(move));
@@ -19,14 +21,21 @@ const Move: React.FC<MoveProps> = ({ name, url }) => {
     return () => setMove(undefined);
   }, []);
 
+
+  const  getText = (selectedLang: string) => {
+    return move?.flavor_text_entries.find( ({language}) => language.name === selectedLang)?.flavor_text as string; 
+  };
+
   return (
-    <>
+    <div className="flex flex-row w-full my-2 rounded border border-gray-300 shadow">
       {
-        move?.effect_entries
-          ? (<span key={name + move.effect_entries[0].short_effect}>{name} : {move.effect_entries[0].short_effect}</span>)
-          : (<span key={name} > { name} : </span>)
+        move
+          ? (
+            <ItemSpecs name={move.name} descriptionLang1={getText('es')} descriptionLang2={getText('fr')}/>
+          )
+          : (<span key={name} >  Loading move... </span>)
       }
-    </>
+    </div>
   )
 };
 
